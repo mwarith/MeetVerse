@@ -17,5 +17,4 @@ COPY . .
 EXPOSE 5173
 
 # Define the command to run your app
-RUN npm run build
-
+CMD ["npm", "run", "dev"]
