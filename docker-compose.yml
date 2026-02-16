@@ -25,8 +25,22 @@ services:
     depends_on:
       - app
 
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/www/letsencrypt
+      - webroot:/var/www/html
+    depends_on:
+      - web 
+    networks:
+      - webroot
+    command: certonly --webroot --webroot-path=/var/www/html --agree-tos --email mwarith25@gmail.com --keep-until-expiring --domains meetverse.duckdns.org 
+
 volumes:
   webroot:
+  certbot-etc:
+  certbot-var:
 
 networks:
   webroot:
